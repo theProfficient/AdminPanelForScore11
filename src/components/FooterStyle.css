@@ -1,0 +1,25 @@
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+  }
+  
+  .game-button {
+    margin: 5px;
+    padding: 10px 20px;
+    background-color: #21005D;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+  
+  .game-button:hover {
+    background-color: #3d83ce;
+  }
+  

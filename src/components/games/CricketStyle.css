@@ -1,0 +1,38 @@
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    color: white;
+  }
+  
+  .table th {
+    padding: 10px;
+    background-color: rgb(0, 213, 255);
+    text-align: left;
+    font-family:Arial, Helvetica, sans-serif;;
+  }
+  
+  .table td {
+    padding: 10px;
+    border: 1px solid white;
+  }
+  
+  .button {
+    background-color: transparent;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+
+  .edit-button {
+    background-color: #fff;
+    color: #b81010;
+    border: 1px solid #007bff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .edit-button:hover {
+    background-color: #007bff;
+    color: #fff;
+  }

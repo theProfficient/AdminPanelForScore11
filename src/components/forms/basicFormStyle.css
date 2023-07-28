@@ -1,0 +1,84 @@
+
+.parentContainer {
+  background-image: url('../../assets/violet.jpg');
+  height: 100vh;
+  width: 100vw;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.formContainer {
+  background-color: #ab84c5;
+  padding: 20px;
+  width: 400px; 
+  height: 450px;
+  border-radius: 50px;
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+  justify-content: center; 
+}
+
+
+.inputContainer {
+  margin-bottom: 10px; 
+  width: 80%; 
+  margin-bottom: 20px; 
+  
+}
+
+.inputContainer input {
+  width: 100%; 
+  padding: 10px; 
+}
+
+.loginButton {
+  background-color: rgb(141, 24, 177);
+  margin-left: 90px;
+  width: 100px;
+  color: rgb(255, 255, 255);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.loginButton:hover {
+  background-color: rgb(33, 202, 47);
+  
+}
+
+/* Navbar styles */
+.navbar {
+background-color: #ab84c5; /* Set the background color of the navbar */
+color: #fff; /* Set the text color in the navbar */
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 10px;
+}
+
+.navbar-left {
+display: flex;
+align-items: center;
+}
+
+.navbar-heading {
+font-size: 40px;
+font-family: 'Times New Roman', serif;
+margin-right: 10px;
+}
+
+/* Style the link in the navbar if needed */
+.navbar-right a {
+color: #fff;
+text-decoration: none;
+margin-left: 10px;
+}
+
+/* Apply hover effect on the link in the navbar */
+.navbar-right a:hover {
+text-decoration: underline;
+}

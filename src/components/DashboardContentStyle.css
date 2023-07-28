@@ -1,0 +1,103 @@
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  color:  #21005D;
+}                                          
+
+.table th {
+  padding: 10px;
+  background-color: #4F378B;
+  text-align: left;
+  font-family: Arial, sans-serif; /* Simplified font-family, only one Arial needed */
+  color: #fff; /* Set the font color to white */
+}
+
+.table td {
+  padding: 10px;
+  border: 1px solid #21005D;
+  font-weight: bold; /* Add this line to make the font bold */
+}
+
+
+.button {
+  background-color: transparent;
+  color: #21005D;
+  border: none;
+  cursor: pointer;
+}
+
+.edit-button {
+  background-color: #21005D;
+  color:  #21005D;
+  border: 1px solid #3d83ce;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.edit-button:hover {
+  background-color: #21005D;
+  color: #fff;
+}
+.userHistory-button {
+  background-color: #fff;
+  color: #21005D;
+  border: 1px solid #21005D;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.userHistory-button:hover {
+  background-color: #21005D;
+  color: #21005D;
+}
+.button.save-button {
+background-color: #21005D;
+color:#21005D;
+border: 1px solid #3d83ce;
+padding: 5px 10px;
+border-radius: 4px;
+cursor: pointer;
+}
+
+.button.save-button:hover {
+background-color:  #21005D;
+color: #21005D;
+}
+
+.pagination {
+display: flex;
+justify-content: center;
+margin-top: 20px;
+}
+
+.pagination button {
+margin: 0 5px;
+padding: 5px 10px;
+border: none;
+border-radius: 4px;
+background-color: #21005D;
+color: #fff;
+cursor: pointer;
+}
+
+.pagination button:hover {
+background-color: #3d83ce;
+}
+
+.search-container {
+display: flex;
+justify-content: flex-end;
+align-items: center;
+margin-bottom: 20px; /* Add some bottom margin to create spacing */
+}
+
+.search-input {
+padding: 8px;
+border: 1px solid  #21005D;
+border-radius: 4px;
+margin-right: 10px;
+width: 200px; /* Adjust the width as needed */
+}
+
