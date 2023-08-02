@@ -14,7 +14,7 @@ const Work = () => {
                     pc={val.imgsrc}
                     title={val.title}
                     text={val.text}
-                    // view={val.view}
+                    view={val.view}
                     Groups={val.Groups}
                     />
                     

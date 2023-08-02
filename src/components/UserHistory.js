@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './games/CricketStyle.css';
 import { useLocation } from 'react-router-dom';
+import Footer from '../components/Footer.js'
 
 const UserHistory = () => {
   const location = useLocation();
@@ -82,6 +83,7 @@ const UserHistory = () => {
           Next
         </button>
       </div>
+      <Footer />
     </div>
   );
 };

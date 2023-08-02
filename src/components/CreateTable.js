@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './CreateTableStyle.css';
+import Footer from '../components/Footer.js'
 
 
 const CreateTournaments = () => {
@@ -130,6 +131,7 @@ const CreateTournaments = () => {
           Create Tournament
         </button>
       </form>
+      <Footer />
     </div>
   );
 };

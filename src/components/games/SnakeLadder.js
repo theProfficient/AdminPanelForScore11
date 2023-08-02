@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './CricketStyle.css';
+import Footer from '../../components/Footer'
 
 const SnakeLadderData = () => {
   const [snakeLadderData, setSnakeLadderData] = useState(null);
@@ -93,6 +94,7 @@ const SnakeLadderData = () => {
           Next
         </button>
       </div>
+      <Footer />
     </div>
   );
 };
