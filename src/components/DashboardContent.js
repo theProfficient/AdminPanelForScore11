@@ -49,7 +49,7 @@ const Dashboard = () => {
 
   const handleInputChange = (e, userId) => {
     const { name, value } = e.target;
-    const updatedUserData = userData.map((user) => {
+    const updatedUserData = userData.map(user => {
       if (user.UserId === userId) {
         return { ...user, [name]: value };
       }
@@ -120,48 +120,97 @@ const Dashboard = () => {
         <>
           <table className="table">
             <thead>
-              <tr>
-                <th className="table-header">Sr. No.</th>
-                <th className="table-header">UserId</th>
-                {/* ... Other table header columns ... */}
-                <th className="table-header">User History</th>
-                <th className="table-header">Edit</th>
-              </tr>
+                <tr>
+            <th className="table-header">Sr. No.</th>
+            <th className="table-header">UserId</th>
+            <th className="table-header">Username</th>
+            <th className="table-header">Balance</th>
+            <th className="table-header">Credit</th>
+            <th className="table-header">Debit</th>
+            <th className="table-header">Ref Code</th>
+            <th className="table-header">TokenId</th>
+            <th className="table-header">Email</th>
+            <th className="table-header">Phone</th>
+            <th className="table-header">User History</th>
+            <th className="table-header">Edit</th>
+          </tr>
             </thead>
             <tbody>
-              {currentItems.map((user, index) => (
-                <tr key={user._id}>
-                  <td className="table-cell">{startSerialNumber + index}</td>
-                  <td className="table-cell">{user.UserId}</td>
-                  {/* ... Other table body cells ... */}
-                  <td className="table-cell">
-                    <button
-                      className="button userHistory-button"
-                      onClick={() => handleView(user.UserId)}
-                    >
-                      <i className="fas fa-eye"></i> View
-                    </button>
-                  </td>
-                  <td className="table-cell">
-                    {user.isEditing ? (
-                      <button
-                        className="button save-button"
-                        onClick={() => handleSave(user.UserId)}
-                      >
-                        Save
-                      </button>
-                    ) : (
-                      <button
-                        className="button edit-button"
-                        onClick={() => handleEdit(user.UserId)}
-                      >
-                        <i className="fas fa-edit"></i> Edit
-                      </button>
-                    )}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
+          {currentItems.map((user, index) => (
+            <tr key={user._id}>
+              <td className="table-cell">{index + 1}</td>
+              <td className="table-cell">{user.UserId}</td>
+              <td className="table-cell">
+                {user.isEditing ? (
+                  <input
+                    type="text"
+                    name="userName"
+                    value={user.userName || ''}
+                    onChange={(e) => handleInputChange(e, user.UserId)}
+                  />
+                ) : (
+                  user.userName
+                )}
+              </td>
+              <td className="table-cell">
+                {user.isEditing ? (
+                  <input
+                    type="text"
+                    name="credits"
+                    value={user.credits || ''}
+                    onChange={(e) => handleInputChange(e, user.UserId)}
+                  />
+                ) : (
+                  user.credits
+                )}
+              </td>
+              <td className="table-cell">{user.realMoney}</td>
+              <td className="table-cell">{user.realMoney}</td>
+              <td className="table-cell">{user.referralCode}</td>
+              <td className="table-cell">{user._id}</td>
+              <td className="table-cell">
+                {user.isEditing ? (
+                  <input
+                    type="text"
+                    name="email"
+                    value={user.email || ''}
+                    onChange={(e) => handleInputChange(e, user.UserId)}
+                  />
+                ) : (
+                  user.email
+                )}
+              </td>
+              <td className="table-cell">
+                {user.isEditing ? (
+                  <input
+                    type="text"
+                    name="phone"
+                    value={user.phone || ''}
+                    onChange={(e) => handleInputChange(e, user.UserId)}
+                  />
+                ) : (
+                  user.phone
+                )}
+              </td>
+              <td className="table-cell">
+                <button className="button userHistory-button" onClick={() => handleView(user.UserId)}>
+                  <i className="fas fa-eye"></i> View
+                </button>
+              </td>
+              <td className="table-cell">
+                {user.isEditing ? (
+                  <button className="button save-button" onClick={() => handleSave(user.UserId)}>
+                    Save
+                  </button>
+                ) : (
+                  <button className="button edit-button" onClick={() => handleEdit(user.UserId)}>
+                    <i className="fas fa-edit"></i> Edit
+                  </button>
+                )}
+              </td>
+            </tr>
+          ))}
+        </tbody>
           </table>
 
           <div className="pagination">
