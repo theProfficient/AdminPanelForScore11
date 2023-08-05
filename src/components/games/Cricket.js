@@ -6,12 +6,12 @@ import Footer from '../../components/Footer'
 const CricketData = () => {
   const [cricketData, setCricketData] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(15);
+  const [itemsPerPage,setItemsPerPage] = useState(8);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://snakeladder1.azurewebsites.net/tables');
+        const response = await axios.get(`https://snakeladder1.azurewebsites.net/tables?limit=${itemsPerPage}`);
         setCricketData(response.data.data);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -24,7 +24,7 @@ const CricketData = () => {
     return () => {
       clearInterval(interval); // Clean up the interval on component unmount
     };
-  }, []);
+  }, [itemsPerPage]);
 
   const goToPreviousPage = () => {
     setCurrentPage(currentPage - 1);
@@ -45,6 +45,25 @@ const CricketData = () => {
 
   return (
     <div>
+      <div className="items-per-page-label">
+        <label
+          htmlFor="items-per-page-select"
+          style={{ textDecorationColor: "aqua", color: "#4F378B" }}
+        >
+          Items per page:
+        </label>
+        <select
+          id="items-per-page-select"
+          value={itemsPerPage}
+          onChange={(e) => setItemsPerPage(Number(e.target.value))}
+        >
+          <option value={8}>8</option>
+          <option value={50}>50</option>
+          <option value={100}>100</option>
+          <option value={100}>500</option>
+          <option value={100}>1000</option>
+        </select>
+      </div>
       <table className="table">
         <thead>
           <tr>

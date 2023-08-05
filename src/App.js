@@ -13,6 +13,7 @@ import CricketGroups from "./components/games/CricketGroups";
 import CricketMatchData from "./components/games/CricketMatchData";
 import SnkGroups from "./components/games/SnkGroups";
 import SnkMatchData from "./components/games/SnkMatchData";
+import BotPlayersData from "./routes/Bot";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -40,6 +41,10 @@ function App() {
         <Route
           path="/dashboard"
           element={isLoggedIn ? <Dashboard /> : <Navigate to="/" />}
+        />
+         <Route
+          path="/botPlayers"
+          element={isLoggedIn ? <BotPlayersData /> : <Navigate to="/" />}
         />
         <Route
           path="/contact"

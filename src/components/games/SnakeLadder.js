@@ -6,13 +6,13 @@ import Footer from '../../components/Footer'
 const SnakeLadderData = () => {
   const [snakeLadderData, setSnakeLadderData] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(15);
+  const [itemsPerPage,setItemsPerPage] = useState(8);
 
  
   useEffect(() => {
   const fetchSnakeLadderData = () => {
     axios
-       .get('https://snakeladder1.azurewebsites.net/getAllSnakeLadderData')
+       .get(`https://snakeladder1.azurewebsites.net/getAllSnakeLadderData?limit=${itemsPerPage}`)
       .then(response => {
         const sortedData = response.data.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
         setSnakeLadderData(sortedData);
@@ -30,7 +30,7 @@ const SnakeLadderData = () => {
     return () => {
       clearInterval(interval); // Clean up the interval on component unmount
     };
-  }, []);
+  }, [itemsPerPage]);
 
   if (snakeLadderData === null) {
     return <div>Loading...</div>; // Show a loading indicator while data is being fetched
@@ -52,6 +52,25 @@ const SnakeLadderData = () => {
 
   return (
     <div>
+      <div className="items-per-page-label">
+        <label
+          htmlFor="items-per-page-select"
+          style={{ textDecorationColor: "aqua", color: "#4F378B" }}
+        >
+          Items per page:
+        </label>
+        <select
+          id="items-per-page-select"
+          value={itemsPerPage}
+          onChange={(e) => setItemsPerPage(Number(e.target.value))}
+        >
+          <option value={8}>8</option>
+          <option value={50}>50</option>
+          <option value={100}>100</option>
+          <option value={100}>500</option>
+          <option value={100}>1000</option>
+        </select>
+      </div>
       <table className="table">
         <thead>
           <tr>

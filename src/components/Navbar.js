@@ -36,6 +36,9 @@ return (
             <Link to ="/dashboard">Users</Link>
          </li>
          <li>
+            <Link to ="/botPlayers">Bot</Link>
+         </li>
+         <li>
             <Link to ="/createTournament"> CreateTournament</Link>
          </li>
          {/* <li>

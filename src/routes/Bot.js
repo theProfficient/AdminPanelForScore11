@@ -2,18 +2,18 @@ import React from 'react';
 // import Navbar from '../components/Navbar';
 // import HeroImage2 from '../components/HeroImage2';
 // import Footer from '../components/Footer';
-import CreateTournaments from "../components/CreateTable";
+import GetBotsDatas from "../components/BotPlayers";
 
-const CreateTournament = () => {
+const GetBotsData = () => {
 
   return (
     <div>
       {/* <Navbar/>
       <HeroImage2 heading="TOURNAMENT " text="Introduce a new Tournament."/> */}
-      <CreateTournaments/>
+      <GetBotsDatas/>
       {/* <Footer/> */}
     </div>
   );
 }
 
-export default CreateTournament;
+export default GetBotsData;

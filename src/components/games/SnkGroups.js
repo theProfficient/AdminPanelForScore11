@@ -8,7 +8,7 @@ const SnakeLadderGroups = () => {
   const navigate = useNavigate();
   const [groupData, setGroupData] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(8);
+  const [itemsPerPage, setItemsPerPage] = useState(8);
 
   // Helper function to convert date to Indian format
   const formatDateToIndianLocale = (dateString) => {
@@ -49,7 +49,7 @@ const SnakeLadderGroups = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://snakeladder1.azurewebsites.net/getAllGroupsOfSnk');
+        const response = await axios.get(`https://snakeladder1.azurewebsites.net/getAllGroupsOfSnk?limit=${itemsPerPage} `);
         const sortedUserData = response.data.sort(
           (a, b) => new Date(b.createdTime) - new Date(a.createdTime)
         );
@@ -67,7 +67,7 @@ const SnakeLadderGroups = () => {
     return () => {
       clearInterval(interval); // Clean up the interval on component unmount
     };
-  }, []);
+  }, [itemsPerPage]);
 
   const handleView = (groupId) => {
     navigate(`/snakeLadder/groupsData/players?groupId=${groupId}`);
@@ -96,6 +96,25 @@ const SnakeLadderGroups = () => {
       {noDataFoundMessage && <div>{noDataFoundMessage}</div>}
       {groupData && groupData.length > 0 ? (
         <>
+        <div className="items-per-page-label">
+        <label
+          htmlFor="items-per-page-select"
+          style={{ textDecorationColor: "aqua", color: "#4F378B" }}
+        >
+          Items per page:
+        </label>
+        <select
+          id="items-per-page-select"
+          value={itemsPerPage}
+          onChange={(e) => setItemsPerPage(Number(e.target.value))}
+        >
+          <option value={8}>8</option>
+          <option value={50}>50</option>
+          <option value={100}>100</option>
+          <option value={100}>500</option>
+          <option value={100}>1000</option>
+        </select>
+      </div>
           <table className="table">
             <thead>
               <tr>
@@ -111,7 +130,7 @@ const SnakeLadderGroups = () => {
             <tbody>
               {groupData.map((item, index) => (
                 <tr key={item._id}>
-                  <td className="table-cell">{index + 1}</td>
+                  <td className="table-cell">{startSerialNumber + index}</td>
                   <td className="table-cell">{item.tableId}</td>
                   <td className="table-cell">{item._id}</td>
                   <td className="table-cell">{item.isGameOver.toString()}</td>
@@ -133,15 +152,16 @@ const SnakeLadderGroups = () => {
           <div className="pagination">
             <button
               className="button"
-              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+              onClick={goToPreviousPage}
               disabled={currentPage === 1}
             >
               Previous
             </button>
             <button
               className="button"
-              onClick={() => setCurrentPage((prev) => Math.min(prev + 1, Math.ceil(groupData.length / itemsPerPage)))}
-              disabled={indexOfLastItem >= groupData.length}
+              onClick={goToNextPage}
+              disabled={indexOfLastItem >= groupData.length ||
+                currentItems.length < itemsPerPage}
             >
               Next
             </button>

@@ -63,7 +63,7 @@ const CrichetMatchData = () => {
             <th className="table-header">run</th>
             <th className="table-header">wicket</th>
             <th className="table-header">prize</th>
-            <th className="table-header">isBot</th>
+            <th className="table-header">PlayerType</th>
           </tr>
         </thead>
         <tbody>
@@ -75,7 +75,7 @@ const CrichetMatchData = () => {
               <td className="table-cell">{item.run}</td>
               <td className="table-cell">{item.wicket}</td>
               <td className="table-cell">{item.prize}</td>
-              <td className="table-cell">{item.isBot.toString()}</td>
+              <td className="table-cell">{item.isBot ? "Bot" : "Player"}</td>
             </tr>
           ))}
         </tbody>
