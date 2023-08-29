@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./FooterStyle.css"
+import "./FooterStyle.css";
 
 const Footer = () => {
   return (
@@ -11,11 +11,14 @@ const Footer = () => {
       <Link to="/games/snakeLadder/Groups" className="game-button">
         SnakeLadder
       </Link>
-      <Link to="/games/cricket/TicTacToe" className="game-button">
-      TicTacToe
+      <Link to="/games/TicTacToe/Groups" className="game-button">
+        TicTacToe
       </Link>
-      <Link to="/games/snakeLadder/AirHocky" className="game-button">
-      AirHocky
+      <Link to="/games/AirHocky/Groups" className="game-button">
+        AirHocky
+      </Link>
+      <Link to="/home" className="game-button">
+        Home
       </Link>
     </footer>
   );

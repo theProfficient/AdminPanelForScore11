@@ -78,9 +78,10 @@ const CreateTournaments = () => {
             onChange={(e) => setGameName(e.target.value)}
             required
           >
-            <option value="">Select Game</option> {/* Add a default empty option */}
+           
             <option value="cricket">Cricket</option>
             <option value="snakeladder">SnakeLadder</option>
+            <option value="ticTacToe"> Tictactoe</option> 
           </select>
         </div>
         <div className="form-group">

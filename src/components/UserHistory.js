@@ -13,10 +13,45 @@ const UserHistory = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
 
+// Helper function to convert date to Indian format
+const formatDateToIndianLocale = (dateString) => {
+  if (!dateString) {
+    return "Date not found";
+  }
+
+  const options = {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric",
+    hour12: true,
+    timeZone: "Asia/Kolkata", // Indian time zone
+  };
+
+  try {
+    // Convert the ISO 8601 date string to a Date object
+    const dateObject = new Date(dateString);
+
+    // Check if the dateObject is valid
+    if (isNaN(dateObject)) {
+      throw new Error("Invalid date format");
+    }
+
+    // Convert from UTC to IST (Indian Standard Time)
+    const ISTDateString = dateObject.toLocaleString("en-IN", options);
+
+    return ISTDateString;
+  } catch (error) {
+    console.error(`Error formatting date: ${error.message}`);
+    return "Invalid Date";
+  }
+};
+
   useEffect(() => {
     axios
      .get(`https://snakeladder1.azurewebsites.net/profile?UserId=${UserId}&limit=${itemsPerPage}`)
-    // .get(`http://localhost:5000/profile?UserId=${UserId}&limit=${itemsPerPage}`)
       .then(response => {
         setUserData(response.data.data);
         console.log(response.data.data.history,"i want to see history");
@@ -74,14 +109,6 @@ const UserHistory = () => {
             <th className="table-header">TableID</th>
             <th className="table-header">GameName</th>
             <th className="table-header">Date & Time</th>
-            {/* <th className="table-header">cricMatch</th>
-            <th className="table-header">cricWin</th> */}
-            {/* <th className="table-header">snkMatch</th>
-            <th className="table-header">snkWin</th> */}
-            {/* <th className="table-header">TicTacToeMatch</th>
-            <th className="table-header">TicTacToeWin</th>
-            <th className="table-header">airHocMatch</th>
-            <th className="table-header">airHocWin</th> */}
           </tr>
         </thead>
         <tbody>
@@ -90,15 +117,9 @@ const UserHistory = () => {
               <td className="table-cell">{startSerialNumber + index}</td>
               <td className="table-cell">{item.tableId}</td>
               <td className="table-cell">{item.gameType}</td>
-              <td className="table-cell">{item.time}</td>
-              {/* <td className="table-cell">{userData.cricketData[0].playCount}</td>
-              <td className="table-cell">{userData.cricketData[0].winCount}</td>
-              <td className="table-cell">{userData.snkLadderData[0].playCount}</td>
-              <td className="table-cell">{userData.snkLadderData[0].winCount}</td>
-              <td className="table-cell">{userData.ticTacToeDataData[0].playCount}</td>
-              <td className="table-cell">{userData.ticTacToeDataData[0].playCount}</td>
-              <td className="table-cell">{userData.hockeyDataData[0].playCount}</td>
-              <td className="table-cell">{userData.hockeyDataData[0].playCount}</td> */}
+              <td className="table-cell">
+                {formatDateToIndianLocale(item.time)}
+              </td>
             </tr>
           ))}
         </tbody>

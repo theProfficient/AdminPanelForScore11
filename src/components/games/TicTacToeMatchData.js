@@ -4,7 +4,7 @@ import './CricketStyle.css';
 import { useLocation } from 'react-router-dom';
 import Footer from '../../components/Footer'
 
-const SnakeLadderMatchData = () => {
+const TicTacToeMatchData = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const groupId = queryParams.get('groupId');
@@ -16,9 +16,8 @@ const SnakeLadderMatchData = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`https://snakeladder1.azurewebsites.net/getGroup?groupId=${groupId}`)
-      // .get(`https://snakeladder-c5dz.onrender.com/getGroup?groupId=${groupId}`)
-    
+        const response = await axios.get(`http://localhost:5000/getGroupsOfTicTacToeAsPerGrpId?groupId=${groupId}`)
+     
         setPlayersData(response.data);
         console.log(response.data.updatedPlayers,"i want to see history");
       } catch (error) {
@@ -100,4 +99,4 @@ const SnakeLadderMatchData = () => {
   );
 };
 
-export default SnakeLadderMatchData;
+export default TicTacToeMatchData;

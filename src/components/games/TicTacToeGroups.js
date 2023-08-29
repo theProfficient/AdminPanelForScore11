@@ -4,7 +4,7 @@ import './CricketStyle.css';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../../components/Footer'
 
-const SnakeLadderGroups = () => {
+const TicTacToeGroups = () => {
   const navigate = useNavigate();
   const [groupData, setGroupData] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -49,7 +49,7 @@ const SnakeLadderGroups = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`https://snakeladder1.azurewebsites.net/getAllGroupsOfSnk?limit=${itemsPerPage} `);
+        const response = await axios.get(`http://localhost:5000/getAllGroupsOfTicTacToe?limit=${itemsPerPage} `);
         const sortedUserData = response.data.sort(
           (a, b) => new Date(b.createdTime) - new Date(a.createdTime)
         );
@@ -70,7 +70,7 @@ const SnakeLadderGroups = () => {
   }, [itemsPerPage]);
 
   const handleView = (groupId) => {
-    navigate(`/snakeLadder/groupsData/players?groupId=${groupId}`);
+    navigate(`/ticTacToe/groupsData/players?groupId=${groupId}`);
   };
 
   if (groupData === null || groupData.length === 0) {
@@ -135,7 +135,7 @@ const SnakeLadderGroups = () => {
                   <td className="table-cell">{item._id}</td>
                   <td className="table-cell">{item.isGameOver.toString()}</td>
                   <td className="table-cell">{item.group.length}</td>
-                  <td className="table-cell">{formatDateToIndianLocale(item.createdTime)}</td>
+                  <td className="table-cell">{formatDateToIndianLocale(item.gameEndTime)}</td>
                   <td className="table-cell">
                     <button
                       className="button userHistory-button"
@@ -174,4 +174,4 @@ const SnakeLadderGroups = () => {
     </div>
   );
 };
-export default SnakeLadderGroups;
+export default TicTacToeGroups;

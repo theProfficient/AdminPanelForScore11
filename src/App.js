@@ -6,13 +6,16 @@ import Dashboard from "./routes/Dashboard";
 import Contact from "./routes/Contact";
 import Games from "./routes/Games";
 import CreateTournament from "./routes/CreateTournament";
-import Cricket from "./components/games/Cricket";
-import SnakeLadder from "./components/games/SnakeLadder";
 import UserHistory from "./components/UserHistory";
+import Cricket from "./components/games/Cricket";
 import CricketGroups from "./components/games/CricketGroups";
 import CricketMatchData from "./components/games/CricketMatchData";
+import SnakeLadder from "./components/games/SnakeLadder";
 import SnkGroups from "./components/games/SnkGroups";
 import SnkMatchData from "./components/games/SnkMatchData";
+import TicTacToe from "./components/games/TicTacToe";
+import TicTacToeGroups from "./components/games/TicTacToeGroups";
+import TicTacToeMatchData from "./components/games/TicTacToeMatchData";
 import BotPlayersData from "./routes/Bot";
 
 function App() {
@@ -20,7 +23,6 @@ function App() {
   const handleLogin = () => {
     setIsLoggedIn(true);
   };
-
   return (
     <>
       <Routes>
@@ -54,7 +56,6 @@ function App() {
           path="/createTournament"
           element={isLoggedIn ? <CreateTournament /> : <Navigate to="/" />}
         />{" "}
-        {/* Update the route path and component name */}
         <Route
           path="/home"
           element={isLoggedIn ? <Home /> : <Navigate to="/" />}
@@ -65,8 +66,10 @@ function App() {
         <Route path="/games/snakeLadder" element={<SnakeLadder />} />
         <Route path="/games/snakeLadder/Groups" element={<SnkGroups />} />
         <Route path="/snakeLadder/groupsData/players" element={<SnkMatchData/>} />
+        <Route path="/games/ticTacToe" element={<TicTacToe />} />
+        <Route path="/games/ticTacToe/Groups" element={<TicTacToeGroups />} />
+        <Route path="/ticTacToe/groupsData/players" element={<TicTacToeMatchData/>} />
         <Route path="/user/history" element={<UserHistory />} />
-        
       </Routes>
     </>
   );

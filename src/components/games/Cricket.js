@@ -1,18 +1,60 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './CricketStyle.css';
+import { useLocation } from "react-router-dom";
 import Footer from '../../components/Footer'
 
 const CricketData = () => {
+  const location = useLocation();
+
   const [cricketData, setCricketData] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage,setItemsPerPage] = useState(8);
+
+   // Helper function to convert date to Indian format
+   const formatDateToIndianLocale = (dateString) => {
+    if (!dateString) {
+      return "Date not found";
+    }
+
+    const options = {
+      year: "numeric",
+      month: "numeric",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric",
+      hour12: true,
+      timeZone: "Asia/Kolkata", // Indian time zone
+    };
+
+    try {
+      // Convert the ISO 8601 date string to a Date object
+      const dateObject = new Date(dateString);
+
+      // Check if the dateObject is valid
+      if (isNaN(dateObject)) {
+        throw new Error("Invalid date format");
+      }
+
+      // Convert from UTC to IST (Indian Standard Time)
+      const ISTDateString = dateObject.toLocaleString("en-IN", options);
+
+      return ISTDateString;
+    } catch (error) {
+      console.error(`Error formatting date: ${error.message}`);
+      return "Invalid Date";
+    }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(`https://snakeladder1.azurewebsites.net/tables?limit=${itemsPerPage}`);
-        setCricketData(response.data.data);
+        const sortedData = response.data.data.sort(
+          (a, b) => new Date(b.createdTime) - new Date(a.createdTime)
+        );
+        setCricketData(sortedData);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -74,6 +116,7 @@ const CricketData = () => {
             <th className="table-header">Time(minutes)</th>
             <th className="table-header">Players</th>
             <th className="table-header">Status</th>
+            <th className="table-header">EndTime</th>
           </tr>
         </thead>
         <tbody>
@@ -86,6 +129,9 @@ const CricketData = () => {
               <td className="table-cell">{table.maxTime}</td>
               <td className="table-cell">{table.players}</td>
               <td className="table-cell">{table.status}</td>
+              <td className="table-cell">
+                {formatDateToIndianLocale(table.endTime)}
+              </td>
             </tr>
           ))}
         </tbody>

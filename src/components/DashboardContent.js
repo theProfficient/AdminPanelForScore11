@@ -14,7 +14,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchAllUserData = () => {
       axios
-        .get(`http://localhost:5000/getAllUser?limit=${itemsPerPage} `)
+        .get(`https://snakeladder1.azurewebsites.net/getAllUser?limit=${itemsPerPage} `)
         // .get("https://snakeladder1.azurewebsites.net/getAllUser")
         .then((response) => {
           const sortedUserData = response.data.sort(
@@ -90,7 +90,7 @@ const Dashboard = () => {
 
     axios
       .put(
-        `http://localhost:5000/updateUser?UserId=${UserId}&${queryParamsString}`
+        `https://snakeladder1.azurewebsites.net/updateUser?UserId=${UserId}&${queryParamsString}`
       )
       // .put(
       //   `https://snakeladder1.azurewebsites.net/updateUser?UserId=${UserId}&${queryParamsString}`

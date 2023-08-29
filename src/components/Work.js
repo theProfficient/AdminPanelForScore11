@@ -6,7 +6,6 @@ import React from 'react'
 const Work = () => {
   return (
     <div className="work-container">
-        {/* <h1 className="games-heading">Games</h1> */}
         <div className="games-container">
             {WorkCardData.map((val,ind)=>{
                 return (
@@ -15,7 +14,7 @@ const Work = () => {
                     title={val.title}
                     text={val.text}
                     view={val.view}
-                    Groups={val.Groups}
+                    source={val.groups}
                     />
                     
                 )

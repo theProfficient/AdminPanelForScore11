@@ -102,18 +102,18 @@ const CricketGroups = () => {
           htmlFor="items-per-page-select"
           style={{ textDecorationColor: "aqua", color: "#4F378B" }}
         >
-          Items per page:
+        Items per page:
         </label>
         <select
           id="items-per-page-select"
           value={itemsPerPage}
           onChange={(e) => setItemsPerPage(Number(e.target.value))}
         >
-          <option value={8}>8</option>
-          <option value={50}>50</option>
+         <option value={8}>5</option>
+          <option value={50}>7</option>
+          <option value={100}>10</option>
+          <option value={100}>50</option>
           <option value={100}>100</option>
-          <option value={100}>500</option>
-          <option value={100}>1000</option>
         </select>
       </div>
       <table className="table">

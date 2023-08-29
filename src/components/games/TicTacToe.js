@@ -3,8 +3,8 @@ import axios from 'axios';
 import './CricketStyle.css';
 import Footer from '../../components/Footer'
 
-const SnakeLadderData = () => {
-  const [snakeLadderData, setSnakeLadderData] = useState(null);
+const TicTacToeData = () => {
+  const [ticTacToeData, setTicTacToeData] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage,setItemsPerPage] = useState(8);
 
@@ -44,12 +44,13 @@ const SnakeLadderData = () => {
   };
  
   useEffect(() => {
-  const fetchSnakeLadderData = () => {
+  const fetchTicTacToeData = () => {
     axios
-       .get(`https://snakeladder1.azurewebsites.net/getAllSnakeLadderData?limit=${itemsPerPage}`)
+       .get(`http://localhost:5000/getAllticTacToeTournaments?limit=${itemsPerPage}`)
       .then(response => {
         const sortedData = response.data.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-        setSnakeLadderData(sortedData);
+        console.log(sortedData,"____________________sortedData");
+        setTicTacToeData(sortedData);
       
       })
       .catch(error => {
@@ -58,15 +59,15 @@ const SnakeLadderData = () => {
         console.log('Error message:', error.message);
       });
   };
-  fetchSnakeLadderData();
-  const interval = setInterval(fetchSnakeLadderData, 3000); // Fetch every 2 seconds
+  fetchTicTacToeData();
+  const interval = setInterval(fetchTicTacToeData, 3000); // Fetch every 2 seconds
 
     return () => {
       clearInterval(interval); // Clean up the interval on component unmount
     };
   }, [itemsPerPage]);
 
-  if (snakeLadderData === null) {
+  if (ticTacToeData === null) {
     return <div>Loading...</div>; // Show a loading indicator while data is being fetched
   }
 
@@ -81,7 +82,7 @@ const SnakeLadderData = () => {
   // Calculate current items
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = snakeLadderData.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = ticTacToeData.slice(indexOfFirstItem, indexOfLastItem);
   const startSerialNumber = (currentPage - 1) * itemsPerPage + 1;
 
   return (
@@ -98,11 +99,11 @@ const SnakeLadderData = () => {
           value={itemsPerPage}
           onChange={(e) => setItemsPerPage(Number(e.target.value))}
         >
-          <option value={8}>8</option>
+          <option value={5}>5</option>
+          <option value={7}>7</option>
+          <option value={10}>10</option>
           <option value={50}>50</option>
           <option value={100}>100</option>
-          <option value={100}>500</option>
-          <option value={100}>1000</option>
         </select>
       </div>
       <table className="table">
@@ -144,7 +145,7 @@ const SnakeLadderData = () => {
         <button
           className="button"
           onClick={goToNextPage}
-          disabled={indexOfLastItem >= snakeLadderData.length}
+          disabled={indexOfLastItem >= ticTacToeData.length}
         >
           Next
         </button>
@@ -154,4 +155,4 @@ const SnakeLadderData = () => {
   );
 };
 
-export default SnakeLadderData;
+export default TicTacToeData;

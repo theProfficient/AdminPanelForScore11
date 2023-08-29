@@ -55,4 +55,7 @@
   padding: 0.5rem 1rem;
   margin-left: 0.5rem;
   margin-right: 0.5rem;
+  font-weight: normal; /* Add this to ensure both buttons have normal font weight */
+  font-family: inherit; /* Add this to inherit the font from the parent */
 }
+
